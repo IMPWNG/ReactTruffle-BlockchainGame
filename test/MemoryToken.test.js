@@ -50,6 +50,12 @@ contract('Memory Token', (accounts) => {
       result = await token.tokenOfOwnerByIndex(accounts[0], 0)
 
       //The owner can see the token
+      let balanceOf = await token.balanceOf(accounts[0])
+      let tokenIds = []
+      for (let i = 0; i < balanceOf; i++) {
+        let id = await token.tokenOfOwnerByIndex(accounts[0], i)
+        tokenIds.push(id.toString())
+      }
     })
   })
 })
