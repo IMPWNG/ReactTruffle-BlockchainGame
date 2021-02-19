@@ -1,14 +1,21 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
 
-import "./ERC721Full.sol";
+pragma solidity ^0.7.6;
 
-contract MemoryToken is ERC721Full {
-  constructor() ERC721Full("Memory Token", "MEMORY") public {
-  }
-  function mint(address _to, string memory _tokenURI) public return(bool) {
-    uint _tokenId= totalSupply().add(1);
-    _mint(_to, _tokenId);
-    _setTokenURI(_tokenId, _tokenURI);
-    return true;
-  }
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+
+contract MemoryToken is ERC721 {
+
+    constructor() ERC721("Memory Token", "MEMORY") {
+    }
+
+      function totalSupply() public returns (uint256) {
+        uint256 _tokenId = totalSupply().add(1);
+    }
+
+    function mint(address _to, string memory _tokenURI) public returns(bool) {
+       _mint(_to);
+       _setTokenURI(_tokenURI);
+       return true;
+    }
 }
